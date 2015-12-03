@@ -1,0 +1,2 @@
+--> implement preventing bad moves that leads to immediate loss
+--> try SSE2 optimizations
