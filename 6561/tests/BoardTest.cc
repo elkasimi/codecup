@@ -1,5 +1,5 @@
-#include "../sources/Board.h"
 #include "../sources/Common.h"
+#include "../sources/Board.h"
 
 #include <gtest/gtest.h>
 
