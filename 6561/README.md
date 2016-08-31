@@ -5,15 +5,15 @@ Please have a look at:
 http://www.codecup.nl
 for more information
 
-# to build the player:
+## to build the player:
 
 $cmake .
 
 $make
 
-# Ranking
+## Ranking
 http://www.codecup.nl/competition.php?comp=183
 
-# Game rules
+## Game rules
 
 http://www.codecup.nl/rules_6561.php
