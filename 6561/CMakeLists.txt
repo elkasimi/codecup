@@ -10,8 +10,8 @@ SET(HEADERS
     sources/TTable.h
     sources/Timer.h
     sources/Configuration.h
-    sources/Player.h
-    sources/PlayerFactory.h
+    sources/Strategy.h
+    sources/StrategyFactory.h
 )
 
 SET(SOURCES
@@ -21,11 +21,10 @@ SET(SOURCES
     sources/TTable.cc
     sources/Timer.cc
     sources/Configuration.cc
-    sources/Player.h
-    sources/Random.cc
-    sources/Human.cc
-    sources/ExpectMax.cc
-    sources/PlayerFactory.cc
+    sources/RandomStrategy.cc
+    sources/HumanStrategy.cc
+    sources/ExpectMaxStrategy.cc
+    sources/StrategyFactory.cc
     sources/Competition.cc
     sources/main.cc
 )

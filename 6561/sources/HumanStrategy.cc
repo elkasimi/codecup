@@ -2,18 +2,18 @@
 
 #include "Board.h"
 #include "IO.h"
-#include "Player.h"
+#include "Strategy.h"
 
-Human::Human( )
+HumanStrategy::HumanStrategy( )
 {
 }
 
-Human::~Human( )
+HumanStrategy::~HumanStrategy( )
 {
 }
 
 Move
-Human::get_best_move( const Board& board )
+HumanStrategy::get_best_move( const Board& board )
 {
     auto begin = board.begin_move( ), end = board.end_move( );
     assert( begin != end && "Game ended!" );

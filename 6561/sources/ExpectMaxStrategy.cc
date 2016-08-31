@@ -2,11 +2,11 @@
 
 #include "Board.h"
 #include "Configuration.h"
-#include "Player.h"
+#include "Strategy.h"
 #include "TTable.h"
 #include "Timer.h"
 
-ExpectMax::ExpectMax( const Configuration& configuration )
+ExpectMaxStrategy::ExpectMaxStrategy( const Configuration& configuration )
     : m_nodes( 0 )
     , m_total_nodes( 0 )
     , m_total_time( 0 )
@@ -25,34 +25,34 @@ ExpectMax::ExpectMax( const Configuration& configuration )
     m_timer = std::make_unique< Timer >( configuration.get_max_total_time( ) );
 }
 
-ExpectMax::~ExpectMax( )
+ExpectMaxStrategy::~ExpectMaxStrategy( )
 {
 }
 
 void
-ExpectMax::enable_solo_mode( )
+ExpectMaxStrategy::enable_solo_mode( )
 {
     m_solo = true;
 }
 
 void
-ExpectMax::enable_logging( )
+ExpectMaxStrategy::enable_logging( )
 {
     m_log = true;
 }
 
 void
-ExpectMax::disable_logging( )
+ExpectMaxStrategy::disable_logging( )
 {
     m_log = false;
 }
 
 double
-ExpectMax::depth_first_search( const Board& board,
-                               uint32_t depth,
-                               uint32_t max_depth,
-                               bool& out_exact,
-                               Move* out_best_move )
+ExpectMaxStrategy::depth_first_search( const Board& board,
+                                       uint32_t depth,
+                                       uint32_t max_depth,
+                                       bool& out_exact,
+                                       Move* out_best_move )
 {
     // check if we don't run out of time
     if ( m_can_abort && m_timer->is_time_over( ) )
@@ -210,7 +210,7 @@ ExpectMax::depth_first_search( const Board& board,
 }
 
 Move
-ExpectMax::get_best_move( const Board& board )
+ExpectMaxStrategy::get_best_move( const Board& board )
 {
     m_forbidden_move = INVALID_MOVE;
 

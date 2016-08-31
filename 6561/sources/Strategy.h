@@ -1,7 +1,7 @@
 #pragma once
 
 class Board;
-class Player
+class Strategy
 {
 public:
     enum class Type
@@ -19,20 +19,20 @@ public:
     }
 };
 
-class Random : public Player
+class RandomStrategy : public Strategy
 {
 public:
-    Random( );
-    virtual ~Random( );
+    RandomStrategy( );
+    virtual ~RandomStrategy( );
 
     Move get_best_move( const Board& board ) override;
 };
 
-class Human : public Player
+class HumanStrategy : public Strategy
 {
 public:
-    Human( );
-    virtual ~Human( );
+    HumanStrategy( );
+    virtual ~HumanStrategy( );
 
     Move get_best_move( const Board& board ) override;
 };
@@ -40,11 +40,11 @@ public:
 class Timer;
 class TTable;
 class Configuration;
-class ExpectMax : public Player
+class ExpectMaxStrategy : public Strategy
 {
 public:
-    explicit ExpectMax( const Configuration& configuration );
-    ~ExpectMax( );
+    explicit ExpectMaxStrategy( const Configuration& configuration );
+    ~ExpectMaxStrategy( );
 
     Move get_best_move( const Board& board ) override;
 

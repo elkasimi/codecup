@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Player.h"
+#include "Strategy.h"
 
 class Competition
 {
@@ -15,8 +15,8 @@ public:
         Interval confidence_interval;
     };
 
-    Competition( const Player::Type first_player_type,
-                 const Player::Type second_player_type,
+    Competition( const Strategy::Type first_strategy_type,
+                 const Strategy::Type second_strategy_type,
                  const int32_t iterations,
                  const int32_t simultaneous );
     ~Competition( );
@@ -24,8 +24,8 @@ public:
     Result run( );
 
 private:
-    Player::Type m_first_player_type;
-    Player::Type m_second_player_type;
+    Strategy::Type m_first_strategy_type;
+    Strategy::Type m_second_strategy_type;
     int32_t m_iterations;
     int32_t m_simultaneous;
 };

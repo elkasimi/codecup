@@ -4,14 +4,14 @@
 #include "Competition.h"
 #include "Configuration.h"
 #include "IO.h"
-#include "Player.h"
 #include "RNG.h"
+#include "Strategy.h"
 
 void
 play_with_myself( const Configuration& configuration )
 {
-    Competition competition{Player::Type::EXPECT_MAX_LIGHTWEIGHT,
-                            Player::Type::EXPECT_MAX_LIGHTWEIGHT, 50, 2};
+    Competition competition{Strategy::Type::EXPECT_MAX_LIGHTWEIGHT,
+                            Strategy::Type::EXPECT_MAX_LIGHTWEIGHT, 50, 2};
     const auto result = competition.run( );
     std::cout << "mean-score=" << result.mean_score << std::endl;
 }
@@ -19,8 +19,8 @@ play_with_myself( const Configuration& configuration )
 void
 play_with_random_player( const Configuration& configuration )
 {
-    Competition competition{Player::Type::EXPECT_MAX_LIGHTWEIGHT,
-                            Player::Type::RANDOM, 50, 2};
+    Competition competition{Strategy::Type::EXPECT_MAX_LIGHTWEIGHT,
+                            Strategy::Type::RANDOM, 50, 2};
     const auto result = competition.run( );
     std::cout << "mean-score=" << result.mean_score << std::endl;
 }
@@ -33,7 +33,7 @@ main_loop( )
 
     Board board;
     const auto& configuration = Configuration::get_best_configuration( );
-    ExpectMax player( configuration );
+    ExpectMaxStrategy player( configuration );
     player.enable_logging( );
     std::string s;
 

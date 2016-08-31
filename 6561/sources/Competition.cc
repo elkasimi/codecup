@@ -4,7 +4,7 @@
 #include "Competition.h"
 #include "Configuration.h"
 #include "IO.h"
-#include "PlayerFactory.h"
+#include "StrategyFactory.h"
 
 namespace
 {
@@ -12,11 +12,11 @@ const uint32_t FAIL_THRESHOLD = 2187;
 
 double
 run_game( int32_t game_id,
-          Player::Type first_player_type,
-          Player::Type second_player_type )
+          Strategy::Type first_player_type,
+          Strategy::Type second_player_type )
 {
-    auto first_player = PlayerFactory::create( first_player_type );
-    auto second_player = PlayerFactory::create( second_player_type );
+    auto first_player = StrategyFactory::create( first_player_type );
+    auto second_player = StrategyFactory::create( second_player_type );
     Board board;
     bool first = true;
     //    std::cerr << "Game " << game_id << " started .." << std::endl;
@@ -48,12 +48,12 @@ run_game( int32_t game_id,
 }
 }
 
-Competition::Competition( const Player::Type first_player_type,
-                          const Player::Type second_player_type,
+Competition::Competition( const Strategy::Type first_strategy_type,
+                          const Strategy::Type second_strategy_type,
                           const int32_t iterations,
                           const int32_t simultaneous )
-    : m_first_player_type( first_player_type )
-    , m_second_player_type( second_player_type )
+    : m_first_strategy_type( first_strategy_type )
+    , m_second_strategy_type( second_strategy_type )
     , m_iterations( iterations )
     , m_simultaneous( simultaneous )
 {
@@ -80,12 +80,12 @@ Competition::run( )
 
             if ( l % 2 == 0 )
                 futures.push_back( std::async( std::launch::async, run_game,
-                                               game_id, m_first_player_type,
-                                               m_second_player_type ) );
+                                               game_id, m_first_strategy_type,
+                                               m_second_strategy_type ) );
             else
                 futures.push_back( std::async( std::launch::async, run_game,
-                                               game_id, m_second_player_type,
-                                               m_first_player_type ) );
+                                               game_id, m_second_strategy_type,
+                                               m_first_strategy_type ) );
         }
 
         for ( auto& future : futures )
