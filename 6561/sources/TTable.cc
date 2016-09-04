@@ -6,7 +6,7 @@
 TTable::TTable( )
     : m_search_hits( 0 )
     , m_search_misses( 0 )
-    , m_entries( std::vector< Entry >( TTABLE_SIZE ) )
+    , m_entries( TTABLE_SIZE )
 {
 }
 
@@ -36,8 +36,6 @@ TTable::get_search_misses( ) const
 Entry*
 TTable::lookup( const Board& board, int32_t relevance )
 {
-    Entry* e = nullptr;
-
     auto h = board.get_hash( );
     auto l = board.get_lock( );
     auto i = h;
@@ -46,7 +44,7 @@ TTable::lookup( const Board& board, int32_t relevance )
         ++m_search_hits;
         if ( m_entries[ i ].relevance >= relevance )
         {
-            e = &m_entries[ i ];
+            return &m_entries[ i ];
         }
     }
     else
@@ -54,7 +52,7 @@ TTable::lookup( const Board& board, int32_t relevance )
         ++m_search_misses;
     }
 
-    return e;
+    return nullptr;
 }
 
 void
