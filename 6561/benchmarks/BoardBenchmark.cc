@@ -1,4 +1,5 @@
 #include "../player/Common.h"
+
 #include "../player/Board.h"
 
 #include <benchmark/benchmark.h>
