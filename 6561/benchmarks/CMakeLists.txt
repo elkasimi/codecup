@@ -1,6 +1,3 @@
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
-
 set(SOURCES
 	../player/Board.h
 	../player/Board.cc
@@ -10,15 +7,14 @@ set(SOURCES
 	../player/Configuration.cc
 	../player/RNG.h
 	../player/RNG.cc
-	BoardTest.cc
+	BoardBenchmark.cc
 	main.cc
 )
 
-add_executable(PlayerTests
+add_executable(PlayerBenchmarks
     ${SOURCES}
 )
 
-target_link_libraries(PlayerTests
-    ${GTEST_LIBRARIES}
-    pthread
+target_link_libraries(PlayerBenchmarks
+    benchmark
 )
